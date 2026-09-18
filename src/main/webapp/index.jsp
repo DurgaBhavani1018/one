@@ -1117,6 +1117,183 @@
             }
         }
     </style>
+
+<style id="ux-redesign">
+/* =========================
+   NexusShop — UX/UI Redesign
+   ========================= */
+:root{
+  --bg:#f7f8fb;--bg-card:#fff;--primary:#172033;--primary-light:#27324a;
+  --accent:#635bff;--accent-light:#eeecff;--accent-dark:#4b45d6;
+  --muted:#667085;--muted-light:#98a2b3;--surface:#f1f3f7;
+  --success:#12b76a;--warning:#fdb022;--danger:#f04438;
+  --radius:18px;--radius-sm:12px;--shadow:0 2px 14px rgba(16,24,40,.06);
+  --shadow-hover:0 16px 40px rgba(16,24,40,.12);--container:1280px;
+}
+body{background:var(--bg);color:var(--primary)}
+.container{max-width:var(--container);padding:0 20px}
+header{background:rgba(255,255,255,.96);border-bottom:1px solid #eaecf0}
+.header-inner{min-height:72px;gap:20px}
+.brand{font-size:21px}
+.brand i{color:var(--accent)}
+.brand .accent{color:var(--accent)}
+nav.main-nav ul{gap:2px}
+nav.main-nav li a{padding:10px 13px;border-radius:10px;color:#475467}
+nav.main-nav li a:hover,nav.main-nav li a.active{background:var(--accent-light);color:var(--accent)}
+.search-wrap{background:#f2f4f7;border:1px solid #eaecf0;min-width:280px}
+.search-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px rgba(99,91,255,.10)}
+.header-actions .icon-btn{width:40px;height:40px;color:#475467}
+.header-actions .icon-btn:hover{background:var(--accent-light);color:var(--accent)}
+.cart-count{background:var(--accent);border-color:#fff}
+.hero{
+  min-height:500px;margin:18px 0 0;border-radius:22px;
+  background:linear-gradient(115deg,#111827 0%,#242b45 60%,#3b3866 100%);
+}
+.hero::before{opacity:.26}
+.hero h1{font-size:52px;letter-spacing:-1.5px}
+.hero .badge{background:rgba(99,91,255,.22);color:#d9d7ff}
+.btn{min-height:44px;padding:11px 22px;border-radius:12px}
+.btn-primary{background:var(--accent);border-color:var(--accent)}
+.btn-primary:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
+.btn-secondary{background:var(--primary)}
+.btn-outline{border-color:#d0d5dd;background:#fff}
+.section{padding:52px 0}
+.section-header{margin-bottom:24px}
+.section-header .title-group h2{font-size:26px;letter-spacing:-.5px}
+.section-header .view-all{color:var(--accent)}
+.categories-grid{grid-template-columns:repeat(6,1fr);gap:14px}
+.cat-card{padding:20px 12px;border:1px solid #eaecf0;box-shadow:var(--shadow)}
+.cat-card:hover{border-color:#c9c5ff;box-shadow:var(--shadow-hover)}
+.cat-card .icon-wrap{background:var(--accent-light);color:var(--accent)}
+.cat-card:hover .icon-wrap{background:var(--accent);color:#fff}
+.products-grid{grid-template-columns:repeat(4,1fr);gap:18px}
+.product-card{border:1px solid #eaecf0;box-shadow:var(--shadow);border-radius:16px}
+.product-card:hover{border-color:#c9c5ff;box-shadow:var(--shadow-hover)}
+.product-card .img-wrap{aspect-ratio:1/0.92}
+.product-card .wish-btn{box-shadow:0 2px 8px rgba(16,24,40,.08)}
+.product-card .body{padding:15px 16px 12px}
+.product-card .body h5{font-size:15px}
+.product-card .body .price{color:var(--primary)}
+.product-card .footer{padding:0 16px 16px}
+.product-card .footer .add-btn{background:var(--primary);border-radius:10px}
+.product-card .footer .add-btn:hover{background:var(--accent)}
+.deal-wrap{border:1px solid #eaecf0;box-shadow:var(--shadow)}
+.deal-wrap .deal-content{padding:42px}
+.timer-box{background:var(--primary);border-radius:10px}
+.newsletter-wrap{background:linear-gradient(120deg,#171c2b,#303755);border-radius:18px;padding:42px 48px}
+.newsletter-wrap form input{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.14)}
+footer{border-top:1px solid #eaecf0}
+.footer-grid .brand-col .socials a{background:#f2f4f7}
+#mobileMenu{box-shadow:0 10px 20px rgba(16,24,40,.06)}
+#mobileMenu ul li a:hover{background:var(--accent-light);color:var(--accent)}
+
+/* Accessibility and interaction improvements */
+button,a,input{outline-offset:3px}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid rgba(99,91,255,.25)}
+button[disabled]{opacity:.55;cursor:not-allowed}
+.toast-stack{position:fixed;right:20px;bottom:20px;z-index:1000;display:flex;flex-direction:column;gap:10px;max-width:360px}
+.ux-toast{background:#fff;border:1px solid #eaecf0;box-shadow:0 12px 30px rgba(16,24,40,.14);padding:13px 16px;border-radius:12px;font-size:14px;display:flex;gap:10px;align-items:center}
+.ux-toast i{color:var(--success)}
+.empty-state{grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--muted)}
+@media(max-width:1200px){
+ .products-grid{grid-template-columns:repeat(3,1fr)}
+ .categories-grid{grid-template-columns:repeat(3,1fr)}
+ .search-wrap{min-width:210px}
+}
+@media(max-width:992px){
+ .hero{min-height:420px}
+ .hero h1{font-size:42px}
+ .search-wrap{min-width:180px}
+}
+@media(max-width:768px){
+ .header-inner{gap:10px}
+ .search-wrap{min-width:0;flex:1}
+ .products-grid{grid-template-columns:repeat(2,1fr)}
+ .categories-grid{grid-template-columns:repeat(2,1fr)}
+ .hero{margin:10px 0 0;min-height:380px;border-radius:18px}
+ .hero h1{font-size:32px}
+ .section{padding:38px 0}
+ .newsletter-wrap{padding:30px 22px}
+}
+@media(max-width:480px){
+ .container{padding:0 12px}
+ .header-inner{min-height:62px}
+ .brand{font-size:17px}
+ .search-wrap{order:3;flex-basis:100%}
+ .header-inner{flex-wrap:wrap;padding:10px 0}
+ .header-inner>div:last-child{flex:1}
+ .header-inner>div:last-child>div:first-child{flex:1}
+ .hero{min-height:340px}
+ .hero h1{font-size:28px}
+ .hero p{font-size:14px}
+ .products-grid{gap:10px}
+ .product-card .body{padding:11px 11px 7px}
+ .product-card .footer{padding:0 11px 11px}
+ .cat-card{padding:15px 8px}
+ .toast-stack{left:12px;right:12px;bottom:12px;max-width:none}
+}
+</style>
+<script>
+/* UX enhancement layer: keyboard-friendly search, wishlist state, feedback,
+   smooth navigation, and a clearer mobile menu without changing product data. */
+document.addEventListener('DOMContentLoaded',()=>{
+  const body=document.body;
+  const stack=document.createElement('div'); stack.className='toast-stack'; body.appendChild(stack);
+  const toast=(message,icon='fa-check-circle')=>{
+    const el=document.createElement('div'); el.className='ux-toast';
+    el.innerHTML='<i class="fas '+icon+'"></i><span>'+message+'</span>';
+    stack.appendChild(el); setTimeout(()=>el.remove(),2600);
+  };
+  window.__uxToast=toast;
+
+  document.querySelectorAll('.view-all').forEach(a=>{
+    a.addEventListener('click',e=>{
+      if(a.getAttribute('href')==='#'){e.preventDefault();document.getElementById('products')?.scrollIntoView({behavior:'smooth'});}
+    });
+  });
+
+  const input=document.getElementById('searchInput'), btn=document.getElementById('searchBtn');
+  const doSearch=()=>{
+    const q=(input?.value||'').trim().toLowerCase();
+    if(typeof filterProducts==='function') filterProducts(q);
+    document.getElementById('products')?.scrollIntoView({behavior:'smooth',block:'start'});
+    if(q) toast('Showing results for "'+q+'"','fa-search');
+  };
+  btn?.addEventListener('click',doSearch);
+  input?.addEventListener('keydown',e=>{if(e.key==='Enter')doSearch()});
+
+  document.addEventListener('click',e=>{
+    const wish=e.target.closest('.wish-btn');
+    if(wish){
+      e.preventDefault();
+      const icon=wish.querySelector('i');
+      const active=wish.dataset.active==='1';
+      wish.dataset.active=active?'0':'1';
+      icon.className=active?'far fa-heart':'fas fa-heart';
+      wish.style.color=active?'':'var(--accent)';
+      toast(active?'Removed from wishlist':'Added to wishlist',active?'fa-heart':'fa-heart');
+    }
+  });
+
+  const mt=document.getElementById('mobileToggle'), mm=document.getElementById('mobileMenu');
+  mt?.addEventListener('click',()=>{
+    const open=mm.style.display==='block'; mm.style.display=open?'none':'block';
+    mt.setAttribute('aria-expanded',String(!open));
+    const icon=mt.querySelector('em'); if(icon) icon.className=open?'fas fa-bars':'fas fa-times';
+  });
+  mm?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    mm.style.display='none'; const icon=mt?.querySelector('em'); if(icon) icon.className='fas fa-bars';
+  }));
+
+  document.getElementById('newsletterForm')?.addEventListener('submit',e=>e.preventDefault());
+  document.getElementById('subscribeBtn')?.addEventListener('click',()=>{
+    const email=document.getElementById('newsletterEmail');
+    if(email?.checkValidity()){document.getElementById('newsletterMsg').textContent='You’re subscribed!';toast('Subscribed successfully');}
+    else {email?.reportValidity();}
+  });
+});
+</script>
+
 </head>
 
 <body>
